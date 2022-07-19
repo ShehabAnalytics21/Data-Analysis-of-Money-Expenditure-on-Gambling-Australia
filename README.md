@@ -29,10 +29,11 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project:
-*	The Human Development Index (HDI) is an index that ranks nations into four levels of human development based on statistics related to life expectancy, education levels, and per capita income.
-*	In this report, the relationship between the different components of HDI will be studied and analysed, specifically, two main questions of interest are to be addressed in this report, the two questions are: 
-  1.	Is there a relationship between the Mean Years of Schooling and the Gross National Income per capita?
-  2.	How much difference is there in the expected years of schooling between different countries of different HDI rankings?
+*	Everyone agrees that gambling plays a significant role in the Australian culture, and both the media and popular literature have done a great deal to promote the idea that we are a "country of gamblers." Australian governments, in contrast to those of most Western countries, actively promote a wide variety of legal gaming options.
+*	In this report, the gambling patterns in Australia will be studied and analysed, specifically, two main questions of interest are to be addressed in this report, the two questions are: 
+    1.	How Does the Money Expenditure Change in the Different States?
+    2.	What is the Relationship Between Money Expenditure and the Gambling Category?
+
 
 [![Product Name Screen
 Shot][product-screenshot]](https://example.com)
@@ -47,23 +48,25 @@ This report was built using RStudio and the extracted data comes from a CSV file
 
 ### Installation:
 To get the report up and running, please follow these simple steps:
-1.	First, fork the project to your own repository.
-2.	Open the Rmd code. 
+1. 	First, fork the project to your own repository.
+2.	Open the Rmd file named “Money Expenditure on Gambling.Rmd”. 
 
 To view the report in an Html format, please follow the instructions:
 1.	First, fork the project to your own repository.
 2.	Download the excel file provided in the directory. 
-3.	Download the “Data Analysis of HDI.Rmd” file into the same folder where the Excel file was saved. 
-4.  Use RStudio to run the file.
-5.  Knit the file to an Html format using the Knit button.
-6.  Open the Html file in a web browser such as Chrome or Safari.   
+3.	Download the “Money Expenditure on Gambling.Rmd” file into the same folder where the Excel file was saved. 
+4.	Knit the file to an Html format using the Knit button.
+5.	Open the Html file in a web browser such as Chrome or Safari.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage:
-The HDI (Human Development Index) analysis presented in this report could be useful to a vast segment of society, including individuals involved in charities, hospitals, governments, insurance firms, etc. The trends that the statistics provide are very important to the stakeholders because they give them important information that, depending on their level of involvement, can be used as a method of improvement in many areas. 
+There are two main stakeholders that can use the information in this report:
+Government: To make the public aware of the enormous harm of gambling.
+Gambling Companies & Agencies: To keep track of the trends and patterns regarding money expenditure on various forms of gambling which can equip them with sufficient information about the wager’s areas of interest.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
