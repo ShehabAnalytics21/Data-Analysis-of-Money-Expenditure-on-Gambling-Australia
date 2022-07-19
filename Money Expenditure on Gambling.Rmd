@@ -1,0 +1,174 @@
+---
+title: "Data Analysis of the Money Expenditure on Gambling in Australia"
+author: "Shehab Shahin"
+date: "University of Sydney | 26/10/2018"
+
+output:
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    self_contained: yes
+    theme: flatly
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    code_folding: hide
+---
+
+<br>
+
+# Executive Summary
+This report aims to obtain a better understanding of how would the money spent on gambling increase or decrease as the gambling category differ. The report also tries to observe what state losses the largest amount of money to gambling companies and firms. This report utilize the data set "Expenditure on Gambling" sourced from Queensland Government Statistician's Office to try to observe and study the trends in data with the aid of various charts and plots. 
+
+Section one of the report focuses on the initial data analysis, in which the data is explained. The explanation of the data includes providing a background to the data set, an evaluation of the source of data and an identification of the limitations surrounding the data set. 
+
+Section two of the report focuses on answering two questions in relation to the data. The first question attempts to understand which state produces the highest expenditure values by looking at box plots and a mean bar chart and it was found that the state of NSW had the highest gambling expenditure. The second question revolves around finding the relationship between the category of gambling and the money expenditure (In millions of Dollars). The answer for this question also utilizes box plots to investigate important trends in the data, and a mean bar chart that presents the average money expenditure for each gambling category, also, it was found that the gaming category produced the highest average gambling expenditure when compared to the other two categories.
+
+
+<br>
+
+# Full Report
+
+## Initial Data Analysis (IDA)
+
+```{r}
+setwd("E:/Work/GitHub Portfolio/Projects/Money Expenditure on Gambling")
+
+Gambling = read.csv("Gamb.csv", header= T)
+
+message("Structure of the data which consists of both quantitative and qualitative variables.")
+
+str(Gambling)
+
+```
+
+```{r}
+D = dim(Gambling)
+message("Dimensions of the data are: ", toString(D))
+```
+
+```{r}
+names(Gambling)
+```
+
+```{r}
+head(Gambling)
+```
+
+
+```{r}
+tail(Gambling)
+```
+
+### Background to data:
+Ethics: the work of the QGSO agency is governed by a number of laws and legislation such as the Statistical Returns Act 1896. This law in addition to other laws and legislation assist the agency in obtaining data easily but simultaneously ensuring that the data are only used for research purposes.  
+Source: The source of data was the "Queensland Government Statistician's Office". This establishment is part of Queensland Treasury. Therefore, the data provided by this organization is reliable as its based on the research conducted by reputable individuals from a different background.
+Limitations: Within the data set, there were many missing data that led to a significant change in the overall results and specifically in the expenditure values as more than 10 missing expenditure values were in the data set. 
+
+### Classification of variables:
+There are 4 variables present within this dataset, state, Gambling Category, Gambling Type and Expenditure (In Millions of Dollars). The expenditure is a continuous numerical data. The state is another variable present within the dataset and this variable is a categorical and ordinal one; composed of more than three categories.  Finally, Gambling Category and Gambling Type are two variables that are both categorical, Nominal (non-ordered) and composed of three or more categories. 
+
+### Stakeholders: 
+Primary institutions interested:
+
+Government: Use those data to spread awareness of the huge negative impact of gambling.
+
+Gambling Companies & Agencies: Observing the trends in money expenditure on different gambling activities which can equip them with sufficient information about the wager's areas of interest.
+
+<br>
+
+## How Does the Money Expenditure Change in Different States ?
+
+```{r}
+state.expenditure.dist <- split( Gambling$Expenditure, Gambling$State) 
+
+boxplot(state.expenditure.dist, col = "lavender",ylim = c(0,6000),ylab = "Expenditure ($m)", xlab = "State", main = "Expenditure in Different States")
+
+boxplot(state.expenditure.dist, col = "lavender",ylim = c(0,1000), ylab = "Expenditure ($m)", xlab = "State", main = "Expenditure in Different States")
+
+boxplot(state.expenditure.dist, col = "lavender",ylim = c(0,100), ylab = "Expenditure ($m)", xlab = "State", main = "Expenditure in Different States")
+
+state.expenditure.mean <- sapply(state.expenditure.dist, mean)
+
+OB <- c(rgb(12,120,30, maxColorValue = 255), rgb(59,89,152, maxColorValue = 255), rgb(156,20,60, maxColorValue = 255),
+rgb(231,0,56,maxColorValue = 255),
+rgb(30,188,99,maxColorValue = 255),
+rgb(0,0,255,maxColorValue = 255),
+rgb(0,255,0,maxColorValue = 255),
+rgb(100,20,140,maxColorValue = 255))
+
+barplot(state.expenditure.mean, col = OB, ylim = c(0,700), ylab = "Average Expenditure ($m)", xlab = "State", main = "Average Expenditure in Different States")
+
+```
+
+
+```{r}
+T = tail(state.expenditure.mean, n=8)
+message ("The Expenditure values From left to Right: ", toString(T    ))
+```
+
+### Text and Analysis: 
+By looking at the box plot, it can be seen that the maximum expenditure value that is not an outliner is present in the state of NSW with a value of $905.783m. the minimum expenditure value in all the states was relatively the same and was close to the value of $0.001m. the median expenditure in each of the states is as follow: 
+QLD: $102.6m, VIC: $51.0m, NSW: $34.5m, NT: $26.9m, WA: $23.1m, SA: $9.4m, TAS: $3.9m, ACT: $1.59m.
+
+The bar chart represents the mean gampling expenditure in each of the Australia states with the highest average expenditure being in the state of NSW with an expenditure value of $636.5m. on the other hand, the lowest average expenditure value was in the state of ACT with an expenditure value of $23.017m. 
+
+
+### Summary: 
+It can be predicted that the states of NSW and VIC would produce the largest expenditure values as those two states are the largest in terms of population. This prediction was verified through the statistical representation of the data using a bar chart which clearly ranks the average expenditure in the different Australian states. The rank was as following (From the Highest to Lowest): NSW, VIC, QLD, WA, NT, SA, TAS, ACT. 
+Furthermore, the boxplot detected a number of important trends that are worth mentioning, for example, when talking about NSW state, it had a median of $34.5m which was calculated using 14 expenditure values from 14 gambling activity, hence 7 out of  those 14 expenditure activities produced less than $34.5m while the other 7 generated a very high net income which caused the overall expenditure in NSW to be the highest despite the fact that the state of NSW did not have the highest median. To sum up, the overall high expenditure in NSW was mainly concentrated in 7 gambling activities or places. Moreover, by looking at the median values of the other boxes, it can be concluded that the money expenditure is concentrated on a few or a large number of activities. 
+In conclusion, it was found that the state of NSW had the highest average gambling expenditure which is mainly due to its high population compared to the other Australian states. The final trend was that the higher the population in a state, the higher the gambling expenditure will be.
+
+## What is the Relationship Between the Money Expenditure and the Gambling Category ?
+
+```{r}
+state.expendo.dist <- split(Gambling$Expenditure, Gambling$GamblingCategory)
+
+expp <- Gambling$Expenditure
+summary(expp)
+
+boxplot(state.expendo.dist, col = "yellow", ylim = c(0,6000), ylab = "Expenditure ($m)", xlab = "Gambling Category", main = "Expenditure on different Gambling Categories")
+
+boxplot(state.expendo.dist, col = "yellow", ylim = c(0,1000), ylab = "Expenditure ($m)", xlab = "Gambling Category", main = "Expenditure on different Gambling Categories")
+
+boxplot(state.expendo.dist, col = "yellow", ylim = c(0,200), ylab = "Expenditure ($m)", xlab = "Gambling Category", main = "Expenditure on different Gambling Categories")
+
+
+
+Ns <- c(rgb(12,120,30, maxColorValue = 255), rgb(59,89,152, maxColorValue = 255), rgb(156,20,60, maxColorValue = 255))
+
+state.expendo.mean <- sapply(state.expendo.dist, mean)
+
+barplot(state.expendo.mean, ylim = c(0,480), col = Ns, border = NA, ylab = "Average Expenditure ($m)", xlab = "Gambling Category", main = "Average Expenditure on different Gambling Categories")
+
+
+
+```
+
+```{r}
+T = tail(state.expendo.mean, n=3)
+message ("The Expenditure values From Left to Right: ", toString(T))
+```
+
+### Text and Analysis:
+The highest value that was not an outliner in the gaming category was equivalent to  $329.19m which was significantly higher than the maximum value for both the Racing $51.005m and the Sports Betting $71.451m categories. The minimum value for all three categories was approximately the same and was roughly equal to $ 0.001m. The median for the gaming category was higher than the medians of the Racing and Sports Betting categories. 
+The bar plot represents the average expenditure on each one of the gambling categories, the highest average expenditure was for the gaming category and was equivalent to $374.6m while the lowest was on Sports Betting and was equivalent to $50.9m, also the racing category had an average expenditure of $134.9m. 
+
+### Summary: 
+According to the data set, there are three main gambling categories. Those categories are, Gaming, Racing and Sports betting. Gaming is the broadest gambling category and it's subdivided into a large number of platforms. This includes but not limited to, Lotto, Keno, Pools, Casino etc. 
+Racing consists of three main gambling types which are, TAB racing, On/Off course book maker and On/ Off course Totalisator. Finally, Sports betting and it also has three types, Book maker and other Fixed Odds, Tab Fixed Odds and Tab Tote Odds. This diversity can be clearly seen by looking at the boxplot in which the lengthy Gaming box indicates a large diversity of money expenditure while the equally-sized short boxes of Sports Betting and Racing indicates a smaller diversity. The median for all the gambling categories is relatively low which shows that 50% of all the money expenditure is situated within the range of 0 to approximately $40m. Additionally, the bar chart clearly shows that the average gambling expenditure on the Gaming category is the highest. 
+In conclusion, it was found that gaming was the most diverse gambling category and was the one that produced the largest net income (expenditure). Also, racing came in the middle while sports betting came last. 
+
+
+# Related Article:
+URL: https://www.australianbetting.org/gambling-australias-obsession/
+
+The main idea that this article is revolving around is about the growing gambling addiction in Australia.
+The article states that the growing presence of different gambling platforms is a major reason behind the growing addiction. The article further explains that new laws and legislations have been implemented in different Australian states to curb the ever growing addiction. Finally, the article talks about the positive aspect of gambling as it provides jobs opportunities and generates large income that can help the countries' economy.
+The article uses statistical data as an evidence that supports their claim, the data was plotted on a bar chart that shows the approximate adults lose each year to gambling in 10 different countries around the world. This article provides me with ideas of how to study the trends in the gambling data set in a more effective manner. That is, I was able to produce a number of questions around gambling that can be proved using the gambling data set as an evidence. For instance, which state is the largest contributor to the money spent on gambling and does the new laws and legislations make any impact on the growing gambling addiction?
+
+# Conclusion:
+In conclusion, the statistical data set provided a concrete evidence that enabled us to answer our two research questions accurately. Research question number one showed that the state of NSW had the highest gambling expenditure with the state of VIC been second. Additionally, it was observed that the increase in population within a state will significantly affect the overall gambling expenditure within that certain state. For the second research question, it was discovered that the gambling category "Gaming" was the most diverse category and had the highest average gambling expenditure  while "Racing" was the second most diverse and had the second highest average gambling expenditure and finally "Sports Betting" was the last gambling category in both diversity and average gambling expenditure. 
+
+<br>
+
